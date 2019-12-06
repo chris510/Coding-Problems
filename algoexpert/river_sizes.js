@@ -10,7 +10,7 @@
 
 const RiverSizes = (matrix) => {
   // initialize new array with the sizes with the end return
-  sizes = [];
+  let sizes = [];
   // Create a new matrix to use to check if the node is visited or not. Map through our matrix by rows, then by the individual values and set them to false for not visited.
   visited = matrix.map(row => row.map(value => false));
   //iterate through the rows of the matrix
@@ -23,12 +23,14 @@ const RiverSizes = (matrix) => {
       traverseNode(i, j, matrix, visited, sizes);
     }
   }
+  //return the final array of the length of islands;
+  return sizes;
 };
 
 const traverseNode = (i, j, matrix, visited, sizes) => {
   let currentRiverSize = 0;
   //A stack so that the function can explore LIFO;
-  const nodeToExplore = [[i, j]];
+  const nodesToExplore = [[i, j]];
   //While the nodeToExplore array is filled, means there are still nodes to explore because of connecting to a river.
   while (nodesToExplore.length) {
     //Pop off the last value of the nodeToExplore array to check the position.
@@ -52,10 +54,10 @@ const traverseNode = (i, j, matrix, visited, sizes) => {
     }
   }
   //when the loop is done and we are done traversing through the nodes, we will have the max riversize for that search and then push it to the sizes arrray
-  if (currentRiverSie > 0) sizes.push(currentRiverSize);
+  if (currentRiverSize > 0) sizes.push(currentRiverSize);
 };
 
-const getUnvisitedNeighbors(i, j, matrix, visited) {
+const getUnvisitedNeighbors = (i, j, matrix, visited) => {
   const unvisitedNeighbors = [];
   //if the search position is on the left column and the neighbor above is not visited, then we will push that into the array.
   if (i > 0 && !visited[i - 1][j]) unvisitedNeighbors.push([i - 1, j]);
@@ -64,12 +66,10 @@ const getUnvisitedNeighbors(i, j, matrix, visited) {
   //if not in the left most column and haven't visited the left neighbor, then push that into the array.
   if (j > 0 && !visited[i][j - 1]) unvisitedNeighbors.push([i, j - 1]);
   //if not in the right most column and haven't visited th right neighbor, we will push that into the array to be searched.
-  if (j < matrix[0].length - 1 && !visited[i][j + 1]) unvisitedNeighbors.push([i, j + 1]);
+  if (j < matrix[i].length - 1 && !visited[i][j + 1]) unvisitedNeighbors.push([i, j + 1]);
   // Returns an array of nodes that haven't been visited
   return unvisitedNeighbors;
 }
-
-
 
 // Sample input:
 // [

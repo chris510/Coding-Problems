@@ -19,7 +19,8 @@
 // };
 
 
-//XOR BITWISE OPRATOR 'caret' this gives a space of O(1) and O(n) time complexity; NOTE: read up on it
+//XOR BITWISE OPRATOR 'caret' this gives a space of O(1) and O(n) time complexity; NOTE: read up on it;
+
 const singleNumber = (nums) =>  {
   let num = 0;
   for (let n of nums) {
