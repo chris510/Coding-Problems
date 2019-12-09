@@ -5,6 +5,7 @@
 // Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
 
 // Itterate through and store in a hash, take only the keys that has a value of 1. Or maybe if it appears twice, don't count it. Uses extra memory but lets use the brute force method first.
+
 // const singleNumber = (nums) => {
 //   hash = {};
 //   nums.forEach(num => {

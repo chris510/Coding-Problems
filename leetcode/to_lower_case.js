@@ -4,8 +4,6 @@
 // Can just have a storage of lowercase alphabet and uppercase alphabet, and then switch them based if its upper case or not with matching indices.
 // Depending if we want to modify the existing string, we will save a lot of space so we will do that. If not, we can create a new string to add.
 
-
-
 const ToLowerCase = (str) => {
   const lowerAlpha = "abcdefghijklmnopqrstuvwxyz";
   const upperAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

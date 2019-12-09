@@ -20,13 +20,15 @@ const rangeSumBST = (root, L, R) => {
 }
 
 const traverse = (node, obj, L, R) => {
-  // if our node is empty then we will return..?
+  // if our node is empty then we will return 0; 'return' by it self will return 0;
   if(node == null) return 
   // Every itteration we will check the nodes value whether it is between the range given.
   if(node.val >= L && node.val <= R) obj.sum += node.val
   traverse(node.left, obj, L, R) //Traverse and check the node to the left
   traverse(node.right, obj, L, R) //Traverse and check the node to the right and whether we should add it to our some or not
 }
+
+//In the above statement, we are recursively looking at the right and left nodes values and checking if the value is between the two end points that are given to us. If it is between, we will add that until we reach the end which stops.
 
 //Time Complexity: O(n), we have to reach every node in the root that is given to us so the length of the root will determine our time.
 //Space Complexity: O(1), no matter how deep our node goes, we will always be keeping track of the sum value so it doesn't change in relation with input size.
