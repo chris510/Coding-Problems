@@ -26,7 +26,41 @@ const calculateTime = (keyboard, word) => {
 };
 
 // Time Complexity: O(n), we are only ittearintg through the word for each function call so as the input size gets bigger, we need to itterate through more words.
-// Space Complexity: O(n), we are only creating a time variable for every function call.
+// Space Complexity: O(1), we are only creating a time variable for every function call.
+
+//How to improve We are using index of so thats giving us an extra O(n) time. How about if we made a map of the indices of the keyboard and then use that to add up the sum? This will be an O(1) space as well.
+
+const getMap = (keyboard) => {
+  const map = {}
+
+  for (let i = 0; i < keyboard.length; i++) {
+    const char = keyboard[i]
+    map[char] = i
+  }
+
+  return map
+}
+
+// const getTime = (map, word) => {
+//   let curPos = 0
+//   let time = 0
+//   for (let i = 0; i < word.length; i++) {
+//     const char = word[i]
+
+//     const charPos = map[char]
+//     time += Math.abs(charPos - curPos)
+//     curPos = charPos
+//   }
+
+//   return time
+// }
+
+// const calculateTime = (keyboard, word) => {
+//   const map = getMap(keyboard)
+
+//   return getTime(map, word)
+// }
+
 
 console.log(calculateTime(("abcdefghijklmnopqrstuvwxyz"), ('cba'))) // 4
   //Explanation: The index moves from 0 to 2 to write 'c' then to 1 to write 'b' then to 0 again to write 'a'. Total time = 2 + 1 + 1 = 4. 
