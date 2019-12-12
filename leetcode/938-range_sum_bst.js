@@ -21,9 +21,9 @@ const rangeSumBST = (root, L, R) => {
 
 const traverse = (node, obj, L, R) => {
   // if our node is empty then we will return 0; 'return' by it self will return 0;
-  if(node == null) return 
+  if (node == null) return 
   // Every itteration we will check the nodes value whether it is between the range given.
-  if(node.val >= L && node.val <= R) obj.sum += node.val
+  if (node.val >= L && node.val <= R) obj.sum += node.val
   traverse(node.left, obj, L, R) //Traverse and check the node to the left
   traverse(node.right, obj, L, R) //Traverse and check the node to the right and whether we should add it to our some or not
 }
