@@ -9,6 +9,7 @@
 
 // THOUGHTPROCESS: We are given a linked list that is not immmutable so we are not able to rearrange the order and then count the node from the 'new head' Since we are given two functions for the node, we can traverse te node through get next and then print starting at the end. What if we do this recursively to reach that end first. and then print the values in order from tail to the head. We can write a helper function to do this reverse.
 
+//recursively
 const printLinkedListInReverse = head => {
   const reverseTraverse = (node) => {
     if (node == null) return;
@@ -20,6 +21,25 @@ const printLinkedListInReverse = head => {
 
 // TimeComplexity: O(n) we have to recursively itterate through the node list no matter which order so the time it takes to get to the whoe length of the node is relative to the input size.
 // SpaceComplexity: O(n) that values we store take up space which corresponds to each node so as the input space increases, the value that gets printed for each node also increases.
+
+// itteratively
+
+const printLinkedListinReverseItterative = head => {
+  const prev = null;
+  const curr = head;
+  const next = null
+
+  while (curr !== null) {
+    next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+  }
+  return prev;
+}
+
+// TimeComplexity: O(n) time because we are only looping through the linked list;
+// SpaceComplexity: O(1) constant because we only have prev,curr,next pointers for the itteration and no matter how large the input list, then the time is still 1
  
 
 // Follow up:
