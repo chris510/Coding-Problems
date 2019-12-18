@@ -74,27 +74,53 @@
 //     return asteroids;
 // };
 
+// const asteroidCollison = asteroids => {
+//   let i = 1;
+//   while (i < asteroids.length) {
+//     if (asteroids[i] < 0 && asteroids[i - 1] > 0) {
+//       //we remove the bcckwards element then decrement by 1 because we need to check
+//       if (Math.abs(asteroids[i]) > asteroids[i - 1]) {
+//         asteroids.splice(i-1, 1);
+//         i--;
+//         //  remove the forward element
+//       } else if ((Math.abs(asteroids[i])) < asteroids[i - 1]) {
+//         asteroids.splice(i, 1);
+//         //remove both elements
+//       } else {
+//         asteroids.splice(i-1, 2);
+//         i--;
+//       }
+//     } else {
+//       i++;
+//     }
+//   }
+//   return asteroids;
+// }
+
 const asteroidCollison = asteroids => {
-  let i = 1;
-  while (i < asteroids.length) {
-    if (asteroids[i] < 0 && asteroids[i - 1] > 0) {
-      //we remove the bcckwards element then decrement by 1 because we need to check
-      if (Math.abs(asteroids[i]) > asteroids[i - 1]) {
-        asteroids.splice(i-1, 1);
-        i--;
-        //  remove the forward element
-      } else if ((Math.abs(asteroids[i])) < asteroids[i - 1]) {
-        asteroids.splice(i, 1);
-        //remove both elements
-      } else {
-        asteroids.splice(i-1, 2);
-        i--;
-      }
+  let stack = [];
+  for (let i = 0; i < asteroids.length; i++) {
+    let currAst = asteroids[i];
+    // if empty stack && negative number is first
+    if ((stack.length === 0) || (stack[stack.length - 1] < 0 && currAst < 0)) {
+      stack.push(currAst);
+    } else if (currAst > 0) {
+      stack.push(currAst);
     } else {
-      i++;
+      let nextAst = stack.pop();
+
+      if (Math.abs(nextAst) > Math.abs(currAst)) {
+        stack.push(nextAst);
+      } else if (Math.abs(nextAst) < Math.abs(currAst)) {
+        // stack.push(currAst);
+        i--;
+      } else {
+        // stack.pop();
+        continue;
+      }
     }
   }
-  return asteroids;
+  return stack;
 }
 
 console.log(asteroidCollison([5, 10, -5])) // [5, 10]

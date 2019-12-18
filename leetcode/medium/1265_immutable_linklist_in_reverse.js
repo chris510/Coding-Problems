@@ -31,6 +31,7 @@ const printLinkedListinReverseItterative = head => {
 
   while (curr !== null) {
     next = curr.next;
+    // we need to break the link and turn it into null value.
     curr.next = prev;
     prev = curr;
     curr = next;
