@@ -31,61 +31,78 @@
 //   return asteroids;
 // };
 
-const asteroidCollison = asteroids => {
-  let stack = [];
-  for (let i = 0; i < asteroids.length; i++) {
-    let currAst = asteroids[i]
-    if ((stack.length === 0 || stack[stack.length-1] < 0 && currAst < 0 )) {
-      stack.push(currAst);
-    } else if (currAst > 0) {
-      stack.push(currAst);
-    } else {
-      const poppedAst = stack.pop();
+// const asteroidCollison = asteroids => {
+//   let stack = [];
+//   for (let i = 0; i < asteroids.length; i++) {
+//     let currAst = asteroids[i]
+//     if ((stack.length === 0 || stack[stack.length-1] < 0 && currAst < 0 )) {
+//       stack.push(currAst);
+//     } else if (currAst > 0) {
+//       stack.push(currAst);
+//     } else {
+//       const poppedAst = stack.pop();
 
-      if (Math.abs(poppedAst) > Math.abs(currAst)) {
-        stack.push(poppedAst);
-      } else if (Math.abs(poppedAst) < Math.abs(currAst)) {
+//       if (Math.abs(poppedAst) > Math.abs(currAst)) {
+//         stack.push(poppedAst);
+//       } else if (Math.abs(poppedAst) < Math.abs(currAst)) {
+//         i--;
+//       } else {
+//         continue;
+//       }
+//     }
+//   }
+//   return stack;
+// }
+
+// Lisa Wen
+// var asteroidCollison = function(asteroids) {
+//     let i = 1;
+//     while (i < asteroids.length) {
+//         if (asteroids[i] < 0 && asteroids[i - 1] > 0) {
+//             if (asteroids[i] * -1 > asteroids[i - 1]) {
+//                 asteroids = asteroids.slice(0, i - 1).concat(asteroids.slice(i));
+//             } else if (asteroids[i] * -1 < asteroids[i - 1]) {
+//                 asteroids = asteroids.slice(0, i).concat(asteroids.slice(i + 1));
+//             } else {
+//                 asteroids = asteroids.slice(0, i - 1).concat(asteroids.slice(i + 1));
+//             }
+//             i--;
+//         } else {
+//             i++;
+//         }
+//     }
+//     return asteroids;
+// };
+
+const asteroidCollison = asteroids => {
+  let i = 1;
+  while (i < asteroids.length) {
+    if (asteroids[i] < 0 && asteroids[i - 1] > 0) {
+      //we remove the bcckwards element then decrement by 1 because we need to check
+      if (Math.abs(asteroids[i]) > asteroids[i - 1]) {
+        asteroids.splice(i-1, 1);
         i--;
+        //  remove the forward element
+      } else if ((Math.abs(asteroids[i])) < asteroids[i - 1]) {
+        asteroids.splice(i, 1);
+        //remove both elements
       } else {
-        continue;
+        asteroids.splice(i-1, 2);
+        i--;
       }
+    } else {
+      i++;
     }
   }
-  return stack;
+  return asteroids;
 }
 
 console.log(asteroidCollison([5, 10, -5])) // [5, 10]
 console.log(asteroidCollison([8, -8])) // []
 console.log(asteroidCollison([10, 2, -5])) // [10]
-console.log(asteroidCollison([-2, -1, 1, 2])) // [-2, -1, 1, 2]
-console.log(asteroidCollison([-2,-2,1,-2]));
-// 
-// Example 1:
-// Input: 
-// asteroids = [5, 10, -5]
-// Output: [5, 10]
-// Explanation: 
-// The 10 and -5 collide resulting in 10.  The 5 and 10 never collide.
-// Example 2:
-// Input: 
-// asteroids = [8, -8]
-// Output: []
-// Explanation: 
-// The 8 and -8 collide exploding each other.
-// Example 3:
-// Input: 
-// asteroids = [10, 2, -5]
-// Output: [10]
-// Explanation: 
-// The 2 and -5 collide resulting in -5.  The 10 and -5 collide resulting in 10.
-// Example 4:
-// Input: 
-// asteroids = [-2, -1, 1, 2]
-// Output: [-2, -1, 1, 2]
-// Explanation: 
-// The -2 and -1 are moving left, while the 1 and 2 are moving right.
-// Asteroids moving the same direction never meet, so no asteroids will meet each other.
-// Note:
+console.log(asteroidCollison([-2,-2,1,2])); // [-2, -1, 1, 2]
+console.log(asteroidCollison([-2,-2,1,-2])) // [-2,-2,-2]
+
 
 // The length of asteroids will be at most 10000.
 // Each asteroid will be a non-zero integer in the range [-1000, 1000]..
