@@ -10,7 +10,7 @@ const minPathSum = (grid) => {
 
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
-      //
+      //move towards the top 
       if (i < grid.length - 1) {
         table[i + 1][j] = Math.min(table[i][j] + grid[i+1][j], table[i+1][j]);
       }
