@@ -26,6 +26,9 @@ const recursePoints = (sx, sy, tx, ty) => {
   }
 }
 
+// Time Complexity: Log of Math.max(tx, ty) because of we are binary searching half the trees.
+// Space Complexity: O(1), we are returning a boolean value and not saving any values.
+
 // Examples:
 // Input: sx = 1, sy = 1, tx = 3, ty = 5
 // Output: True
