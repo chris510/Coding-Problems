@@ -68,6 +68,25 @@ var getIntersectionNode = function(headA, headB) {
 
 //Time Complexity : O(n) -> where n is the total length of both linked lists
 //Space Complexity : O(1) : we are only saving the current nodes values as we appproach them so it doesn't change given the input length.
+
+// We can also use a hash set to find the unique number that both have. this is a time complexity of O(n) and also a O(n) space complexity.
+
+const getIntersectionNode = (headA, headB) => {
+  if (!headA || !headB) return null;
+  let hash = new Set();
+  
+  while (headA !== null) {
+    hash.add(headA);
+    headA = headA.next;
+  }
+  
+  while (headB !== null) {
+    if (hash.has(headB)) return headB;
+    headB = headB.next;
+  }
+  
+  return null
+}
  
 
 // Example 1:
