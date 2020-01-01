@@ -7,9 +7,10 @@
 // We can do this recursively or itteratively, recursively would take up more space because of the stack frames
 
 const insertIntoBST = (root, val) => {
-  if (!root) return new TreeNode(val);
+  if (!root) root = new TreeNode(val);
   
   let currentNode = root;
+  
   while (currentNode) {
     if (currentNode.val < val) {
       if (currentNode.right === null) {
@@ -27,7 +28,7 @@ const insertIntoBST = (root, val) => {
       }
     }
   }
-  return root;
+  return root
 };
 
 // Time Complexity: O(n) where n is the length of the tree. We have to traverse the whole tree in the worse case.
