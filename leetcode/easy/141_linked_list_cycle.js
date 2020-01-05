@@ -8,6 +8,24 @@
 
 // Naive solutions is we can traverse the linked list and put every node into a hash table and if we see that node value in the hash table then we know that its a cycle;
 
+// var hasCycle = function(head) {
+//   let seen = new Set();
+//   let node = head;
+  
+//   while (node) {
+//     if (seen.has(node)) {
+//       return true;
+//     } else {
+//       seen.add(node);
+//       node = node.next;
+//     }
+//   }
+//   return false;
+// };
+
+// TimeComplexity: O(n); we are itterating through the whole linked list
+// Space Complexity : O(n); we are saving the nodes we seen in a set.
+
 const hasCycle = (head) => {
   if (!head) return false;
   let result = false;
