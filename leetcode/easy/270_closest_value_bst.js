@@ -47,7 +47,7 @@ var closestValue = function(root, target) {
   return value
 };
 
-// Time Complexity: O(log n) we will be using binary search to search the tree.
+// Time Complexity: O(log n) we will be using binary search to search the tree. Or O(n) where n is the height of the tree and we might sometimes have only 1 branch trees.
 // Space Complexity: O(1) since we are not returning anything besides the value.
 
 // Example:
