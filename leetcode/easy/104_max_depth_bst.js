@@ -30,5 +30,31 @@ var maxDepth = function(root) {
   return maxDepth;
 };
 
+
 // Time Complexity : O(n) we have to traverse through the whole tree and get the max depth;
-// Space Complexity : O(1) just returning a constant variable
+// Space Complexity : O(n) if the tree is unbalanced, then the recursion calls would take O(n) times but the best case is when it is balanced and 
+
+const maxDepth = root => {
+  if (!root) {
+    return 0;
+  }
+  let max = 0;
+  const nodes = [{node: root, depth: 1}];   // stack for dfs
+  while (nodes.length) {
+    const {depth, node} = nodes.pop();
+    max = Math.max(depth, max);
+    if (node.left) {
+        nodes.push({depth: depth + 1, node: node.left});
+    }
+    if (node.right) {
+        nodes.push({depth: depth + 1, node: node.right});
+    }
+  }
+  return max;
+}
+
+var maxDepth = function(root) {
+  if (!root) return 0;
+  
+  return Math.max(maxDepth(root.right), maxDepth(root.left)) + 1;
+};
