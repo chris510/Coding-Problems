@@ -6,6 +6,8 @@
 
 // THOUGHTPROCESS: We need to check all the values of the linked list to see if its connected to each other to be considered a cycle. We could use a set to check for the values and then see if its belongs in the list, if it does, then we can return true and theres a cycle.
 
+// Naive solutions is we can traverse the linked list and put every node into a hash table and if we see that node value in the hash table then we know that its a cycle;
+
 const hasCycle = (head) => {
   if (!head) return false;
   let result = false;
