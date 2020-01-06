@@ -14,8 +14,6 @@ var removeNthFromEnd = function(head, n) {
   while (counter < n) {
     second = second.next;
     counter++;
-    console.log(counter)
-    console.log(second)
   }
 
   if (!second) {
