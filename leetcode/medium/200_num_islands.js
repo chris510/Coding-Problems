@@ -19,6 +19,8 @@
 
 // Output: 3
 
+// BFS
+
 var numIslands = function(matrix) {
   let number = 0;
   let visited = matrix.map(row => row.map(val => false))
@@ -61,6 +63,52 @@ const traverseMatrix = (i, j, matrix, visited) => {
     }
   }
 }
+
+// Time Complexity: O(n * m) where n is the number of rows and m is the number of columns;
+// Space Complexity: O(n * m) where n is the number of rows and m is the number of columns;
+
+
+//DFS
+
+var numIslands = function(grid) {
+  let num = 0;
+  
+  const dfs = (i, j) => {
+    if (grid[i][j] === '1') {
+      grid[i][j] = 0;
+    } else {
+      return;
+    }
+    // Top
+    if (i < grid.length - 1) {
+      dfs(i + 1, j);
+    }
+    // Right
+    if (j < grid[i].length - 1) {
+      dfs(i, j + 1);
+    }
+    // Left
+    if (i > 0 && i < grid.length) {
+      dfs(i - 1, j);
+    }
+    //Bottom
+    if (j > 0 && j < grid[i].length) {
+      dfs(i, j - 1);
+    }
+  }
+  
+   for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j] === '1') {
+        dfs(i, j);
+        num++;
+      }
+    }
+  }
+  
+  return num;
+    
+};
 
 // Time Complexity: O(n * m) where n is the number of rows and m is the number of columns;
 // Space Complexity: O(n * m) where n is the number of rows and m is the number of columns;
