@@ -6,30 +6,26 @@
 // Use two pointers, we set the second pointer away from the first by n. Then we will traverse the link list til the second reaches null. When we finally get to that point, we know that the first pointer will be n away from the end. Then we can just remove it and then return the new head of the linked list.
 
 var removeNthFromEnd = function(head, n) {
-  if (!head.next) return null;
-  counter = 0;
-  let first = head;
-  let second = head;
+  let dummyHead = new ListNode(null);
+  dummyHead.next = head;
+  let slow = dummyHead
+  let fast = dummyHead
   
-  while (counter < n) {
-    second = second.next;
-    counter++;
+  for (let i = 0; i < n + 1; i++) {
+    fast = fast.next;  
   }
 
-  if (!second) {
-    first.val = first.next.val
-    first.next = first.next.next;
-    return head;
+  while (fast !== null) {
+    slow = slow.next;
+    fast = fast.next;
   }
   
-  while (second.next) {
-    second = second.next;
-    first = first.next;
-  }
-  
-  first.next = first.next.next
-  return head;
+  slow.next = slow.next.next
+  return dummyHead.next
 };
+
+// Time Complexity: O(n) => traverse the whole node;
+// Space Complexity: O(1) =
 
 // Example:
 
