@@ -79,7 +79,7 @@ var numIslands = function(grid) {
     } else {
       return;
     }
-    // Top
+    // Bottom
     if (i < grid.length - 1) {
       dfs(i + 1, j);
     }
@@ -87,11 +87,11 @@ var numIslands = function(grid) {
     if (j < grid[i].length - 1) {
       dfs(i, j + 1);
     }
-    // Left
+    // Top
     if (i > 0 && i < grid.length) {
       dfs(i - 1, j);
     }
-    //Bottom
+    // Left
     if (j > 0 && j < grid[i].length) {
       dfs(i, j - 1);
     }
