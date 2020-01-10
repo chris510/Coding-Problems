@@ -44,7 +44,41 @@ var plusOne = function(digits) {
 // Time Complexity: O(n) because we have to traverse through the whole array incase all the numbers are 9's to increase it by one.
 // Space Complexity: O(n) creating a new array same size as the input.
 
+// We can do it with constant space complexity by changing the initial aray
 
+var plusOne = function(digits) {
+  for(var i = digits.length - 1; i >= 0; i--){
+    digits[i]++; 
+    if(digits[i] > 9){
+      digits[i] = 0;
+    }else{
+      return digits;
+    }
+  }
+  // if theres more 9's we will reach this part of the loop and we just add 1 to the end
+  digits.unshift(1);
+  return digits;
+};
+
+const plusOne = digits => {
+  let carry = 1;
+  for(let i = digits.length-1; i>=0; i--) {
+      let temp = digits[i] + carry;
+      if(temp >= 10) {
+        digits[i] = 0;
+        carry = 1;
+      } else {
+        digits[i] = temp;
+        carry = 0;
+        break;
+      }
+  }
+  if (carry > 0) {
+    return [carry, ...digits];
+  } else {
+    return digits
+  }
+}
 // Example 1:
 
 // Input: [1,2,3]
