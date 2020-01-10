@@ -39,6 +39,50 @@ var search = function(nums, target) {
    return -1;
 };
 
+var search = function(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+    
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    
+    if (nums[mid] === target) {
+      return mid;
+    }
+    
+    // When dividing the roated array into two halves, one must be sorted.
+    
+    // Check if the left side is sorted
+    if (nums[left] <= nums[mid]) {
+      if (nums[left] <= target && target <= nums[mid]) {
+        // target is in the left
+        right = mid - 1;
+        
+      } else {
+        // target is in the right
+        left = mid + 1;
+      }
+    } 
+    
+    // Otherwise, the right side is sorted
+    else {
+      if (nums[mid] <= target && target <= nums[right]) {
+        // target is in the right
+        left = mid + 1;
+
+      } else {
+        // target is in the left
+        right = mid - 1;
+      }
+    }
+    
+    
+  }
+    
+  return -1;
+};
+
+// Doing bsearch itteratively is better as you can do it in O(log n) time and constant space while if you do it recursively, its log space and time complexity.
 // Time Complexity: O(log n) we are splitting the array in half each time;
 // Space Complexity: O(1);
  

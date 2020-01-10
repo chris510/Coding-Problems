@@ -6,7 +6,7 @@
 
 // You may assume no duplicate exists in the array.
 
-// Thoughtprocess: We will be using binary search to find the minimum value of log n time and constant space. We will use left and right boundaries to look for the constant mid point and check if its greater than or less than the outer boundaries. If the midpoint is less than the right, we know the minimum value is on the left side since the right side is already sorted.
+// Thoughtprocess: We will be using binary search to find the minimum value of log n time and constant space. We will use left and right boundaries to look for the constant mid point and check if its greater than or less than the outer boundaries. If the midpoint is less than the right, then we know that the right is sorted and the left is not sorted and vice versa
 
 var findMin = function(nums) {
   let left = 0;
