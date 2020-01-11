@@ -23,8 +23,10 @@ var searchMatrix = function(matrix, target) {
   return false;
 };
 
-// Time Complexity: O(n * m) where is the matrix length and m is the largest length of the sub array;
+// Time Complexity: O(log(n * m)) where is the matrix length and m is the largest length of the sub array; We are only loking through half the sub array with the binary search method;
 // Space Complexity: O(1) since we are just traversing the matrix and not saving anything;
+
+
 
 // Example 1:
 
