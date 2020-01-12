@@ -20,6 +20,16 @@ var fib = function(N) {
 // Time Complexity: O(n) times because we are itterating with a for loop for 2 to N;
 // Space Compelxity: O(1) we have constant variables that just gets changed every time we go through an itteration.
 
+// Recursive
+
+var fib = function(N) {
+  if (N <= 1) return N;
+  return fib(N - 2) + fib(N - 1);
+};
+
+// Time Complexity: O(2^n): the amount of operations needed, for each level of recursion, grows exponentially as the depth approaches
+// Space Complexity: O(n): because of the stack ;
+
  
 
 // Example 1:
