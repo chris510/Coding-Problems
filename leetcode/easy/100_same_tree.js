@@ -16,6 +16,41 @@ var isSameTree = function(p, q) {
 // Time Complexity: O(n * m) where n is the number of nodes in a tree
 // Space Complexity: If the tree is balanced, then O(log n) since we are recursion stack half the tree. If its unbalanced, then its O(n) since we have to go through the whole stack.
 
+// Lets try to do this itteratively now.
+
+var isSameTree = function(p, q) {
+  if (!p && !q) return true
+  if (!p || !q) return false
+  let nodesP = [p]
+  let nodesQ = [q]
+  
+  while (nodesP.length > 0 && nodesQ.length > 0) {
+      let nodeP = nodesP.shift()
+      let nodeQ = nodesQ.shift()
+
+      if (
+          (nodeP.val !== nodeQ.val)
+          || (nodeP.left && !nodeQ.left)
+          || (!nodeP.left && nodeQ.left)
+          || (nodeP.right && !nodeQ.right)
+          || (!nodeP.right && nodeQ.right)
+      ) {
+          return false
+      }
+      
+      if (nodeP.left && nodeQ.left) {
+          nodesP.push(nodeP.left)
+          nodesQ.push(nodeQ.left)
+      }
+      
+      if (nodeP.right && nodeQ.right) {
+          nodesP.push(nodeP.right)
+          nodesQ.push(nodeQ.right)   
+      }
+  }
+  
+  return nodesP.length === nodesQ.length
+};
 
 // Example 1:
 
