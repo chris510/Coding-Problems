@@ -53,6 +53,7 @@ var rotate = function(nums, k) {
   return nums;
 };
 
-//Using the reversing method is a lot faster as shift and unshifting requires the array elements to be moved again after.
+//Using the reversing method is a lot faster as shift and unshifting requires the array elements to be moved again after. N elements are reversed a total of 3 times.
 // Time Complexity: O(n);
 // Space Comeplexity: O(1);
+
