@@ -25,7 +25,6 @@
 const singleNumber = (nums) =>  {
   let num = 0;
   for (let n of nums) {
-    console.log(num^=n);
     num ^= n;
   }
   return num;
