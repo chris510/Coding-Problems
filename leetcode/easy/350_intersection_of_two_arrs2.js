@@ -1,14 +1,33 @@
-// 350. Intersection of Two Arrays II
-// Easy
-
-// 980
-
-// 328
-
-// Add to List
-
-// Share
 // Given two arrays, write a function to compute their intersection.
+
+var intersect = function(nums1, nums2) {
+  // let length = Math.min(nums1.length, nums2.length);
+  
+  let hash = {};
+  for (let i = 0; i < nums1.length; i++) {
+    if (!hash[nums1[i]]) {
+      hash[nums1[i]] = 1;
+    } else {
+      hash[nums1[i]]++;
+    }
+  }
+  
+  console.log(hash);
+  
+  let result = [];
+  for (let i = 0; i < nums2.length; i++) {
+    if (hash[nums2[i]] && hash[nums2[i]] ) {
+      result.push(nums2[i]);
+      hash[nums2[i]]--;
+    }
+  }
+  return result
+};
+
+// Time Complexity: O(n * m) where n and m are the lengths of nums1 and nums2;
+// Space Compleixty: O(n) since we are only storing one arrays worth of elements
+
+// How about we sort this and give up some time for some space. We can sort and check and use 2 pointers making O(1) space and O(n log n)
 
 // Example 1:
 
