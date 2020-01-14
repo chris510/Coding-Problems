@@ -19,6 +19,23 @@ var removeDuplicates = function(nums) {
 // Time Complexity: O(n);
 // Space Complexity: O(1), since we are not using the extra space to creat ea new array and just modifying in place.
 
+var removeDuplicates = function(nums) {
+  let i = 0;
+  let j = 1
+  
+  while (i < nums.length && j < nums.length) {
+    if (nums[i] === nums[j]) {
+      nums.splice(j, 1);
+    } else {
+      i++;
+      j++
+    }
+  }
+  return nums.length
+};
+
+// Time Complexity: Since we are using the splice method, we have to shift the elements over by (n) length so it will also be constantt time
+
 // Example 1:
 
 // Given nums = [1,1,2],
