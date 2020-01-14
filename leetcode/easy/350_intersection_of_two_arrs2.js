@@ -24,10 +24,52 @@ var intersect = function(nums1, nums2) {
   return result
 };
 
+// var intersect = function(nums1, nums2) {
+//   const map = new Map();
+//   for (const n of nums1) {
+//       if (map.has(n)) {
+//           map.set(n, map.get(n) + 1);
+//       } else {
+//           map.set(n, 1);
+//       }
+//   }
+//   const result = [];
+//   for (const n of nums2) {
+//       if (map.has(n) && map.get(n) > 0) {
+//           result.push(n);
+//           map.set(n, map.get(n) - 1);
+//       }
+//   }
+//   return result;
+// };
+
 // Time Complexity: O(n * m) where n and m are the lengths of nums1 and nums2;
 // Space Compleixty: O(n) since we are only storing one arrays worth of elements
 
-// How about we sort this and give up some time for some space. We can sort and check and use 2 pointers making O(1) space and O(n log n)
+// How about we sort this and give up some time for some space. We can sort and check and use 2 pointers making O(1) space and O(n log n) time
+var intersect = function(nums1, nums2) {
+  nums1.sort((a, b) => a - b);
+  nums2.sort((a, b) => a - b);
+  
+  let res = [];
+  
+  let i = 0;
+  let j = 0;
+  
+  while (i < nums1.length && j < nums2.length) {
+    if (nums1[i] === nums2[j]) {
+      res.push(nums1[i]);
+      i++;
+      j++;
+    } else if (nums1[i] > nums2[j]) {
+      j++;
+    } else {
+      i++;
+    }
+  }
+  
+  return res;
+};
 
 // Example 1:
 
