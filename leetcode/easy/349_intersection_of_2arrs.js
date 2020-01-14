@@ -55,6 +55,15 @@ const intersection = (nums1, nums2) => {
 
 // They ask for the intersection, which has a trivial solution using a hash or a set.
 
+var intersection = function(nums1, nums2) {
+  let setOne = new Set(nums1);
+  let setTwo = new Set(nums2);
+    
+  return [...setOne].filter(i => setTwo.has(i));
+    
+};
+
+
 // Then they ask you to solve it under these constraints:
 // O(n) time and O(1) space (the resulting array of intersections is not taken into consideration).
 // You are told the lists are sorted.

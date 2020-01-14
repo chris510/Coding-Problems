@@ -47,5 +47,13 @@ const findIntersection = (arr) => {
 // Time Complexity: O(n * m), we will itterate through the length of the array so the time increases with the input size.
 // Space Complexity:O(n), the size we save is relative to the input size of the input array.
 
+var intersection = function(nums1, nums2) {
+  let setOne = new Set(nums1);
+  let setTwo = new Set(nums2);
+    
+  return [...setOne].filter(i => setTwo.has(i)); 
+};
+
+
 console.log(findIntersection(['1, 3, 4, 7, 15', '1, 2, 4, 15, 21']));
 // console.log(findIntersection(['1, 3, 9, 10, 17, 18', '1, 4, 9, 10']));
