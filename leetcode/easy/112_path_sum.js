@@ -23,6 +23,30 @@ const hasPathSum = (root, sum) => {
 // Time Complexity: O(n) since the worst case is if we traverse the whole tree or all the nodes and we return false and cannot find the path of nodes that matches;
 // Space Complexity: O(n); We are only using a stack frame to store the recursive calls so it disappears as we traverse the higher tree.
 
+var hasPathSum = function(root, sum) {
+  if (!root) return false;
+  
+  let queue = [root];
+  while (queue.length) {
+     let node = queue.shift();
+      if (!node.left && !node.right && node.val === sum) return true;
+      
+      if (node.left) {
+          node.left.val += node.val;
+          queue.push(node.left);
+      }
+      
+      if (node.right) {
+          node.right.val += node.val;
+          queue.push(node.right);
+      }
+
+  }
+  return false;
+};
+
+// Time Complexity: O(n) and Space Complexity: O(1) sine we are itterating and not saving any space.
+
 // Example:
 
 // Given the below binary tree and sum = 22,
