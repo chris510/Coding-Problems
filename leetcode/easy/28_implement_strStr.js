@@ -16,7 +16,7 @@ var strStr = function(haystack, needle) {
   let needLen = needle.length
   
   for (let i = 0; i < len; i++) {
-      if (haystack.substring(i, i + needLen) === needle) return i;
+    if (haystack.substring(i, i + needLen) === needle) return i;
   }
   return -1
 };
