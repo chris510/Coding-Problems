@@ -1,0 +1,29 @@
+// Remove all elements from a linked list of integers that have value val.
+
+// Example:
+
+// Input:  1->2->6->3->4->5->6, val = 6
+// Output: 1->2->3->4->5
+
+// We will traverse the linked list keeping track of the previous variable and the current variable since we need to point the previous.next to the curr.next and skip the value thats equal to the target
+
+var removeElements = function(head, val) {
+  let newHead = new ListNode(null);
+  newHead.next = head
+  
+  let curr = head;
+  let prev = newHead;
+  
+  while (curr) {
+      if (curr.val === val) {
+          prev.next = curr.next;
+      } else {
+          prev = curr;
+      }
+      curr = curr.next;
+  }
+  return newHead.next
+};
+
+// Time Complexity: O(n) where we traverse through the whole linked list;
+// Space Complexity: O(1) since we are only creating auxillary variables.

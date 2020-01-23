@@ -6,18 +6,18 @@ var rotateString = function(A, B) {
   let str = A;
   
   while(A !== B){
-      let temp = A.split('');
-      let first = temp.shift();
-      temp.push(first);
-      A = temp.join('');
-      if(A === str){
-          return false;
-      }
+    let temp = A.split('');
+    let first = temp.shift();
+    temp.push(first);
+    A = temp.join('');
+    if(A === str){
+      return false;
+    }
   }
   return true;
 };
 
-//If we double A which is the original string, it contains all the possible shfits because you only have a.length shifts;
+//If we double A which is the original string, it contains all the possible shfits because you only have a.length shifts So we can also use the sliding window for this problem.
 // 'abcde' + 'abcde' = 'abcdeabcde'
 //                       'cdeab' ==== true;
 
@@ -26,7 +26,7 @@ var rotateString = function(A, B) {
 };
 
 // Time Complexity: O(a * b)
-// Space Complexity: O(1) since we are not saving any variables
+// Space Complexity: O(1) since we are not saving any variables;
 
 // Example 1:
 // Input: A = 'abcde', B = 'cdeab'
