@@ -5,11 +5,11 @@ var canPermutePalindrome = function(s) {
   let chars = {};
   
   for (let i = 0; i < s.length; i++) {
-      if (!chars[s[i]]) {
-          chars[s[i]] = 1;
-      } else {
-          chars[s[i]]++;
-      }
+    if (!chars[s[i]]) {
+      chars[s[i]] = 1;
+    } else {
+      chars[s[i]]++;
+    }
   }
   
   let dupes = 0;
