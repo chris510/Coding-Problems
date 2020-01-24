@@ -9,6 +9,12 @@
 
 // Explain the correctness of your function, and analyze its time and space complexities.
 
+// Conditions
+  // Moves = [0, 1] or [1, 0];
+  // Moves are in [i, j]
+  // i >= j
+
+
 function numOfPathsToDest(n) {
   if (n === 1) return 1;
   let count = 0
@@ -16,6 +22,7 @@ function numOfPathsToDest(n) {
   let pos = [0,0]
   let newPos = []
   let destination = n - 1
+
   function isValid(pos, n){
     if(pos[0] > n || pos[1] > n) return false;
     if(pos[0] < pos[1]) return false;
