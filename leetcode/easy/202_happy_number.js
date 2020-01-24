@@ -20,25 +20,43 @@ const squares = {'0':0, '1':1, '2':4, '3':9, '4':16, '5':25, '6':36, '7':49, '8'
 //   return false 
 // };
 
-const isHappy = (n) => {
-  if (n === 1 )return true;
+// const isHappy = (n) => {
+//   if (n === 1 )return true;
 
-  const seen = {};
-  while (n !== 1 && !seen[n]) {
-    seen[n] = true;
-    n = sumOfSquares(n);
-  }
-  return n === 1;
-}
+//   const seen = {};
+//   while (n !== 1 && !seen[n]) {
+//     seen[n] = true;
+//     n = sumOfSquares(n);
+//   }
+//   return n === 1;
+// }
 
-const sumOfSquares = (numStr) => {
-  return numStr.toString().split('').reduce((sum, num) => {
-    return sum + Math.pow(num, 2)
-  }, 0)
-}
+// const sumOfSquares = (numStr) => {
+//   return numStr.toString().split('').reduce((sum, num) => {
+//     return sum + Math.pow(num, 2)
+//   }, 0)
+// }
 
 // Time Complexity: O(n);
 // Space Complexity: O(n);
+
+var isHappy = function(n) {
+  let seen = new Set();
+  while (n !== 1) {
+    let sum = 0;
+    let current = n;
+    while (current !== 0) {
+      sum += (current % 10) * (current % 10);
+      current = Math.floor(current /= 10)
+    }
+      
+    if (seen.has(sum)) return false;
+    
+    seen.add(sum);
+    n = sum;
+  }
+  return true;
+};
 
 console.log(isHappy(19)) // true;
 console.log(isHappy(1)) // true

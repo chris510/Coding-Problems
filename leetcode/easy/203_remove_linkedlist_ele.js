@@ -27,3 +27,23 @@ var removeElements = function(head, val) {
 
 // Time Complexity: O(n) where we traverse through the whole linked list;
 // Space Complexity: O(1) since we are only creating auxillary variables.
+
+var removeElements = function(head, val) {
+  if (!head) return null;
+  if (head.val === val) return removeElements(head.next, val);
+  
+  const recurse = (node) => {
+    if (!node) return;
+    
+    while (node.next && node.next.val === val) {
+      node.next = node.next.next;
+    }
+    recurse(node.next)
+  }
+  
+  recurse(head);
+  return head;
+};
+
+// Time Complexity: O(n) since we might have to go through the whole linked list;
+// Space Complexity: O(n) for each nodes in the list stack frames
