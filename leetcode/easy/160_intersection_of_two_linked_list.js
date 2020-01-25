@@ -66,6 +66,29 @@ var getIntersectionNode = function(headA, headB) {
   return curB;
 };
 
+var getIntersectionNode = function(headA, headB) {
+  if (!headA || !headB) return null;
+  
+  let nodeA = headA;
+  let nodeB = headB;
+  
+  while (nodeA !== nodeB) {
+    
+    if (nodeA) {
+      nodeA = nodeA.next;
+    } else {
+      nodeA = headB;
+    }
+    
+    if (nodeB) {
+      nodeB = nodeB.next;
+    } else {
+      nodeB = headA;
+    }
+  }
+  return nodeA;
+};
+
 //Time Complexity : O(n) -> where n is the total length of both linked lists
 //Space Complexity : O(1) : we are only saving the current nodes values as we appproach them so it doesn't change given the input length.
 

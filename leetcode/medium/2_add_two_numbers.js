@@ -2,25 +2,72 @@
 
 // You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 
-//Given two linked list, we want to first initially reverse the link list, put the digits together, and then add them together and then return the corresponding 3 digit number as a linked list.
+// var addTwoNumbers = function(l1, l2) {
+//   let dummyHead = new ListNode(0);
+//   let l3 = dummyHead;
+//   let carry = 0;
+//   while (l1 && l2) {
+//     let l1Num = (l1 ) ? l1.val : 0;
+//     let l2Num = (l2) ? l2.val : 0;
+//     let currentSum = l1Num + l2Num + carry;
+//     if (currentSum >= 10) {
+//       carry = currentSum / 10;
+//     }
+//     let lastDigit = currentSum % 10;
+//     console.log(l1Num, l2Num, currentSum, carry, lastDigit);
+//     let newNode = new ListNode(lastDigit);
+//     l3.next = newNode
+    
+//     if (l1) l1 = l1.next;
+//     if (l2) l2 = l2.next;
+//     l3 = l3.next
+   
+//   }
+  
+//   // if (carry > 0) {
+//   //   let newNode = new ListNode(carry);
+//   //   l3.next = newNode;
+//   //   l3 = l3.next;
+//   // }
+  
+//   return dummyHead.next;
+// };
 
-// So we have to use recursion to get the end of the link list, and then add their values accordingly together, then add the values of the two link list, get that sum, and then put each digit into its own node.
+var addTwoNumbers = function(l1, l2) {
+  let dummyHead = new ListNode(0);
+  let l3 = dummyHead;
+  let carry = 0;
+  let sum = 0;
+  while (l1 || l2 || sum > 0) {
+    if (l1) {
+      sum = sum + l1.val;
+      l1 = l1.next;
+    }
 
-const addTwoNumbers = (l1, l2) => {
-  let listSumOne = 0;
-  let listSumTwo = 0;
-  const traverseReverse = (node, sum) => {
-    if (node === null) return;
-      traverseReverse(node);
-      sum += Node.val();
-      return sum
+    if (l2) {
+      sum = sum + l2.val;
+      l2 = l2.next;
+    }
+    
+    if (sum >= 10) {
+      carry = 1;
+      sum = sum - 10;
+    }
+
+    l3.next = new ListNode(sum);
+    l3 = l3.next;
+    
+    sum = carry;
+    carry = 0;
   }
-  listSumOne = traverseReverse(l1, listSumOne);
-  listSumTwo = traverseReverse(l2, listSumTwo);
+  return dummyHead.next;
 };
+
+// Time Complexity : O(max(n * m)) where the highest itteration is the longest linked respectively
+// Space Complexity : O(max(n * m)) where the highest new node list that is stored is the longest linked list respectively.
 
 // Example:
 
 // Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 // Output: 7 -> 0 -> 8
-// Explanation: 342 + 465 = 807.
+// Explanation: 342 + 465 = 807
