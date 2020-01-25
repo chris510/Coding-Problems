@@ -28,6 +28,20 @@ var middleNode = function(head) {
 // Time Complexity: O(n); since we are traversing the linked list twice
 // Space Complexity: O(n) since we are storing an array with linked list values
 
+// Could also use slow and fast pointers, since the fast pointer moves twice as fast. THen it will reach the end when the slow pointer reaches 0.
+
+var middleNode = function(head) {
+  let slow = head, fast = head;
+  
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow
+};
+
+// Time Complexity: O(n) and space Complexity: O(1);
+
 // Example 1:
 
 // Input: [1,2,3,4,5]
