@@ -69,26 +69,57 @@ var longestPalindrome = function(s) {
   return max;
 };
 
-var longestPalindrome = function(s) {
-  let longestPal = [0, 1];
+// var longestPalindrome = function(s) {
+//   let longestPal = [0, 1];
   
-  for (let i = 0; i < s.length; i++) {
-    let odd = expandFromCenter(s, i - 1, i + 1);
-    let even = expandFromCenter(s, i - 1, i);
-    let longest = odd[1] - odd[0] > even[1] - even[0] ? odd : even
-    longestPal = longestPal[1] - longestPal[0] > longest[1] - longest[0] ? longestPal : longest
-  }
-  return s.slice(longestPal[0], longestPal[1]);
-};
+//   for (let i = 0; i < s.length; i++) {
+//     let odd = expandFromCenter(s, i - 1, i + 1);
+//     let even = expandFromCenter(s, i - 1, i);
+//     let longest = odd[1] - odd[0] > even[1] - even[0] ? odd : even
+//     longestPal = longestPal[1] - longestPal[0] > longest[1] - longest[0] ? longestPal : longest
+//   }
+//   return s.slice(longestPal[0], longestPal[1]);
+// };
 
-const expandFromCenter = (str, left, right) => {
-  while (left >= 0 && right < str.length) {
-    if (str[left] !== str[right]) break;
-    left--;
-    right++;
-  }
-  return [left + 1, right];
-}
+// const expandFromCenter = (str, left, right) => {
+//   while (left >= 0 && right < str.length) {
+//     if (str[left] !== str[right]) break;
+//     left--;
+//     right++;
+//   }
+//   return [left + 1, right];
+// }
 
 // Time Complexity: O(n^2);
 // Space Complexity: O(1);
+
+//This is the best way to write it.
+var longestPalindrome = function(s) {
+  if (!s || s.length < 1) return '';
+  
+  let start = 0; end = 0; len = s.length;
+  
+  for (let i = 0; i < len; i++) {
+    let odd = expandFromCenter(s, i, i);
+    let even = expandFromCenter(s, i, i + 1);
+    let longLen = Math.max(odd, even);
+    
+    if (longLen > end - start) {
+      start = Math.ceil(i - ((longLen - 1) / 2));
+      end = i + (longLen / 2)
+    }
+  }
+  
+  return s.substring(start, end + 1);
+};
+
+const expandFromCenter = (str, left, right) => {
+  if (!str || left > right) return null;
+  
+  while (left >= 0 && right < str.length && str[left] === str[right]) {
+    left--;
+    right++;
+  }
+  
+  return right - left - 1;
+}
