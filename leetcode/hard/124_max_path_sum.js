@@ -2,6 +2,8 @@
 
 // For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.
 
+// For this probelm we will call recursively the left and right of the root node so that we can calculate the largest value of the sides of the tree and then compare that as we go back up for the stack frames.
+
 var maxPathSum = function(root) {
   let maxSum = -Infinity;
   
