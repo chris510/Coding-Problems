@@ -20,6 +20,24 @@ var invertTree = function(root) {
   return root;
 };
 
+// Itteratively
+
+var invertTree = function(root) {
+  const queue = [root]
+  
+  while (queue.length) {
+    let node = queue.shift();
+    if (node) {
+      [node.left, node.right] = [node.right, node.left];
+      queue.push(node.left, node.right);
+    }
+  }
+  
+  return root;
+};
+
+// Time Complexity: O(n) and space is O(n);
+
 // Example:
 
 // Input:
