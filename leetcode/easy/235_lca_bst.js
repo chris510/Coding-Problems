@@ -4,6 +4,25 @@
 
 // Given binary search tree:  root = [6,2,8,0,4,7,9,null,null,3,5]
 
+//We traverse the tree and since we know that the tree is a binary search tree, we can look at the root and check if its greater than or equal to q or p. If q or p is greater, than its on the right side. If its less than, its on the left side. If one is greater and one is less than the current node, then its the current node that is the lowest common ancestor.
+//iteratively
+var lowestCommonAncestor = function(root, p, q) {
+  let node = root;
+  
+  while (node) {
+    if (p.val > node.val && q.val > node.val) {
+      node = node.right;
+    } else if (p.val < node.val && q.val < node.val) {
+      node = node.left;
+    } else {
+      return node;
+    }
+  }
+  return null;
+};
+
+//Linear space and time complexity:
+
 //recursively
 var lowestCommonAncestor = function(root, p, q) {
   if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
