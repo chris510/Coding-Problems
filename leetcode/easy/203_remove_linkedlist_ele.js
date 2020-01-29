@@ -15,12 +15,12 @@ var removeElements = function(head, val) {
   let prev = newHead;
   
   while (curr) {
-      if (curr.val === val) {
-          prev.next = curr.next;
-      } else {
-          prev = curr;
-      }
-      curr = curr.next;
+    if (curr.val === val) {
+        prev.next = curr.next;
+    } else {
+        prev = curr;
+    }
+    curr = curr.next;
   }
   return newHead.next
 };
