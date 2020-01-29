@@ -6,7 +6,6 @@
 
 var canFinish = function(numCourses, prerequisites) {
   const inDegree = new Array(numCourses).fill(0);
-  let count = 0;
   //create the visited for every course, add one because of the prereq
   for (let i = 0; i < prerequisites.length; i++) {
       inDegree[prerequisites[i][0]]++;
@@ -18,6 +17,8 @@ var canFinish = function(numCourses, prerequisites) {
       if (inDegree[i] === 0) stack.push(i)
   }
   
+  let count = 0;
+
   while (stack.length) {
       //When we pop off, add it to our list;
       let curr = stack.pop();
