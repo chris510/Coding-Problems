@@ -24,6 +24,31 @@ const minPathSum = (grid) => {
   return table[grid.length - 1][grid[0].length - 1];
 }
 
+// Time Complexity: O(n * m) traverse through the whole matrix;
+// Space Complexity: O(n * m) we have to keep dp of the whole matrix to compare to.
+
+var minPathSum = function(grid) {
+  if (!grid || !grid.length) return 0;
+  let dp = new Array(grid.length).fill().map(() => new Array(grid[0].length).fill(Infinity));
+  dp[0][0] = grid[0][0];
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (i < grid.length - 1) {
+        dp[i + 1][j] = Math.min(dp[i][j] + grid[i + 1][j], dp[i + 1][j]);
+      }
+      
+      if (j < grid[i].length -1) {
+        dp[i][j + 1] = Math.min(dp[i][j] + grid[i][j + 1], dp[i][j + 1])
+      }
+      
+    }
+  }
+  return dp[dp.length - 1][dp[0].length - 1];
+};
+
+// Time Complexity: O(n * m) traverse through the whole matrix;
+// Space Complexity: O(n * m) we have to keep dp of the whole matrix to compare to.
+
 
 const input = [
   [1,3,1],
