@@ -6,6 +6,10 @@
 
 
 //Recursively
+// Start traversing the tree from the root node.
+// If the current node itself is one of p or q, we would mark a variable mid as True and continue the search for the other node in the left and right branches.
+// If either of the left or the right branch returns True, this means one of the two nodes was found below.
+// If at any point in the traversal, any two of the three flags left, right or mid become True, this means we have found the lowest common ancestor for the nodes p and q.
 
 var lowestCommonAncestor = function(root, p, q) {
   if (!root || !p || !q) return null;
@@ -18,17 +22,19 @@ var lowestCommonAncestor = function(root, p, q) {
     
     let mid = (node === p || node === q) ? 1 : 0;
     
-    if (mid + left + right >= 2) {
-      res = node;
-    }
-    
+    if (mid + left + right >= 2) res = node;
     return (mid + left + right > 0);
-    
   }
   
   traverseTree(root, p, q);
   return res;
 };
+
+//itteratively
+// Start from the root node and traverse the tree.
+// Until we find p and q both, keep storing the parent pointers in a dictionary.
+// Once we have found both p and q, we get all the ancestors for p using the parent dictionary and add to a set called ancestors.
+// Similarly, we traverse through ancestors for node q. If the ancestor is present in the ancestors set for p, this means this is the first ancestor common between p and q (while traversing upwards) and hence this is the LCA node.
 
 //Time Complexity: O(n) since we might have to traverse the whole tree with n nodes and not find anything.
 // Space Complexity: O(n) Since the tree can be skewed towards side with N height.
