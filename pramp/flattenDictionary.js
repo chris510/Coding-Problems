@@ -22,6 +22,7 @@ function flattenDictionary(dict) {
       }
     })
   }
+  
   flatten(dict, '');
   return result;
 }
