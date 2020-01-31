@@ -2,39 +2,61 @@
 
 //To do this with using dfs, we can use a node stack with a depth stack so we will know the depth of each node side by side. Then we will traverse down the node and then look to see what the right most node is because we would push that into the array and then add that to the hash map. Then using the hash map, we will build the final array of the values of the right most values;
 var rightSideView = function(root) {
-  let rightMostValueAtDepth = new Map();
+  const rightValueDepth = new Map();
   let maxDepth = -1;
   
-  let nodeStack = [];
-  let depthStack = [];
-  nodeStack.push(root);
-  depthStack.push(0);
+  // Would use a link list for add/remove;
+  const nodeStack = [root];
+  const depthStack = [0];
   
   while (nodeStack.length) {
     let node = nodeStack.shift();
     let depth = depthStack.shift();
+    
     if (node) {
       maxDepth = Math.max(maxDepth, depth);
       
-      if (!rightMostValueAtDepth.has(depth)) {
-        rightMostValueAtDepth.set(depth, node.val);
+      if (!rightValueDepth.has(depth)) {
+        rightValueDepth.set(depth, node.val);
       }
-      nodeStack.push(node.right);
+      
+      nodeStack.push(node.right); //Right first, because the first value will go into the array list
       nodeStack.push(node.left);
-      depthStack.push(depth+1);
-      depthStack.push(depth+1);
+      depthStack.push(depth + 1);
+      depthStack.push(depth + 1);
     }
   }
-  // console.log(rightMostValueAtDepth);
-  let rightView = new Array();
+  
+  let rightVals = new Array();
   for (let depth = 0; depth <= maxDepth; depth++) {
-    rightView.push(rightMostValueAtDepth.get(depth));
+    rightVals.push(rightValueDepth.get(depth));
   }
-  return rightView
+  
+  return rightVals;
 };
 
 // Time Complexity: O(n) since we have to traverse through the whole tree and look at each node.
 // Space Complexity: O(n) since at most our stack frames will include the entire tree node.
+
+
+// BFS, you visit each level of the tree and always push the right most value of each level into the results array.
+
+var rightSideView = function(root) {
+  if (!root) return [];
+  const result = [];
+  const queue = [root];
+  
+  while (queue.length) {
+    let size = queue.length;
+    for (let i = 0; i < size; i++) {
+      let node = queue.shift();
+      if (i === size - 1) result.push(node.val); // We are only pushing the right most value at each depth;
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+  }
+  return result;
+};
 
 // Example:
 
@@ -48,23 +70,3 @@ var rightSideView = function(root) {
 //  \     \
 //   5     4       <---
 
-
-// var rightSideView = function(root) {
-//     const result = [];
-//     const queue = [];
-    
-//     if (root === null) return result;
-    
-//     queue.push(root);
-//     while(queue.length !== 0) {
-//         let size = queue.length;
-//         for (let i = 0; i < size; i++) {
-//             let n = queue.shift();
-//             if (i === size - 1) result.push(n.val);
-//             if (n.left !== null) queue.push(n.left);
-//             if (n.right !== null) queue.push(n.right);
-//         }
-//     }
-    
-//     return result;
-// };
