@@ -77,7 +77,7 @@ const traverseTree = (node) => {
   return node.value;
 }
 
-traverseTree(root, maxSum, 0);
+traverseTree(root);
 return maxSum;
 }
 
