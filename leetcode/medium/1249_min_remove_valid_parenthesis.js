@@ -33,6 +33,34 @@ var minRemoveToMakeValid = function(str) {
 
 // Time Complexity: O(n) since we are traversing the length of the string
 // Space Complexity: O(n) since the stack we have can keep at most all the characters in the string.
+
+var minRemoveToMakeValid = function(str) {
+  let newStr = "";
+  let open = 0;
+  
+  for (let char of str) {
+    if (char === "(") {
+      open++;
+    } else if (char === ")") {
+      if (open === 0) continue;
+      open--;
+    }
+    newStr += char;
+  }
+  
+  let res = "";
+  
+  for (let i = newStr.length - 1; i >= 0; i--) {
+    if (newStr[i] === "(" && open-- > 0) continue;
+    
+    res += newStr[i];
+  }
+  
+  return res.split("").reverse().join('')
+};
+
+// Time Complexity: O(n);
+// Space Complexity: O(n)
  
 
 // Example 1:
