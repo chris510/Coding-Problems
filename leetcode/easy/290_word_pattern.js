@@ -27,6 +27,29 @@ var wordPattern = function(pattern, str) {
 // Time Complexity: O(n) where n is the length of the pattern and the string.
 // Space Complexity: O(2n) or O(n) since we create two hash maps;
 
+var wordPattern = function(pattern, str) {
+  let words = str.split(" ");
+  if (pattern.length !== words.length) return false;
+  
+  let map = new Map();
+  let set = new Set();
+  
+  for (let i = 0; i < pattern.length; i++) {
+    
+    let char = pattern[i];
+    let word = words[i];
+    
+    if (!map.has(char) && !set.has(word)) {
+      map.set(char, word);
+      set.add(word);
+    } else if (map.get(char) !== word) {
+      return false
+    }
+  }
+  
+  return true;
+};
+
 // Example 1:
 
 // Input: pattern = "abba", str = "dog cat cat dog"
