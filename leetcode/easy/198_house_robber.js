@@ -24,6 +24,24 @@ var rob = function(nums) {
 // Time Complexity: O(n) since we have to itterate through the nums array to find the max money we can make when we rob each house
 // Space Complexity: O(1) we have 2 auxilary variables that are constantly changing.
 
+var rob = function(nums) {
+  if (!nums.length) return 0;
+  if (nums.length === 1) return nums[0];
+  if (nums.length === 2) return Math.max(nums[0], nums[1]);
+  
+  let twoBefore = nums[0];
+  let oneBefore = Math.max(nums[0], nums[1]);
+  
+  for (let i = 2; i < nums.length; i++) {
+    const currentMax = Math.max(twoBefore + nums[i], oneBefore);
+    
+    twoBefore = oneBefore;
+    oneBefore = currentMax
+  }
+  
+  return oneBefore;
+};
+
 // Example 1:
 
 // Input: [1,2,3,1]
