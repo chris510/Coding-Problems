@@ -5,7 +5,7 @@
 // Input: 1->2->4, 1->3->4
 // Output: 1->1->2->3->4->4
 
-// Thoughtprocess: Can do either itteratively (O n*m time and O(1) space or recursion using O(n * m time and space));
+// Thoughtprocess: Can do either itteratively O(n*m) time and O(1) space or recursion using O(n * m time and space));
 
 var mergeTwoLists = function(l1, l2) {
   let mergedNode = new ListNode(0);

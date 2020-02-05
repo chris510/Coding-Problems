@@ -2,7 +2,6 @@
 
 // Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 
-
 //Two Pointers pattern since the array is sorted;
 
 var removeDuplicates = function(nums) {
