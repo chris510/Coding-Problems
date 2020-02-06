@@ -32,3 +32,38 @@ const traverse = (node, obj, L, R) => {
 
 //Time Complexity: O(n), we have to reach every node in the root that is given to us so the length of the root will determine our time.
 //Space Complexity: O(1), no matter how deep our node goes, we will always be keeping track of the sum value so it doesn't change in relation with input size.
+
+//bfs
+const rangeSumBST = (root, L, R) => {
+  if (!root) return 0;
+  let sum = 0;
+  
+  let queue = [root];
+  
+  while (queue.length) {
+    let node = queue.shift();
+    
+    if (node.val >= L && node.val <= R) sum += node.val;
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+  }
+  
+  return sum;
+}
+
+//recursion/dfs
+var rangeSumBST = function(root, L, R) {
+  if (!root) return 0;
+  let sum = 0;
+  
+  const dfs = (node, L, R) => {
+    if (!node) return;
+    if (node.val >= L && node.val <= R) sum += node.val;
+    
+    if (node.left) dfs(node.left, L, R);
+    if (node.right) dfs(node.right, L, R);
+  }
+  
+  dfs(root, L, R);
+  return sum;
+}
