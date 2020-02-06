@@ -49,22 +49,25 @@ var connect = function(root) {
   return root
 };
 
+// Use pointer solution, with every node we can use the next key pointer to check and point the children nodes to the according nodes. If we have the parent we are allowed ot point their children to the respecive nodes.
+  // If there is a node.next that means theres two childrens so we have to do firstNode.left points to secondNode.right because of that conjunction.
+  
 var connect = function(root) {
   if (!root) return null;
   
-  let left = root;
+  let leftMost = root;
   
-  while (left.left) {
-    let head = left;
+  while (leftMost.left) {
+    let node = leftMost;
     
-    while (head) {
-      head.left.next = head.right;
-      if (head.next) head.right.next = head.next.left
-      head = head.next;
+    while (node) {
+      node.left.next = node.right;
+      if (node.next) node.right.next = node.next.left;
+      node = node.next;
     }
-    left = left.left;
+    leftMost = leftMost.left;
   }
-  return root
+  return root 
 };
 
 // Time Complexity: O(n);
