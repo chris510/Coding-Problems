@@ -18,15 +18,36 @@ var leastInterval = function(tasks, n) {
     }
   }
   
-  
   const max = Math.max(...Object.values(count));
-
   const maxCount = Object.values(count).filter((num) => num === max).length;
   return Math.max(total, max * maxCount + (max - 1) * (n + 1 - maxCount)) ;
 };
 
 //Time Complexity: O(n) since we have to go through the whole list;
 //Space Compleixty: O(1) since the max character is the alphabet its constant.
+
+var leastInterval = function(tasks, n) {
+  if (tasks.length < 2) return tasks.length;
+  
+  let charCounts = {};
+  
+  for (let task of tasks) {
+    if (charCounts[task]) {
+      charCounts[task]++;
+    } else {
+      charCounts[task] = 1;
+    }
+  }
+  let countArr = Object.values(charCounts).sort((a, b) => b - a)
+  let maxVal = Math.max(...countArr) - 1;
+  let idleSlots = maxVal * n;
+  
+  for (let i = 1; i < countArr.length; i++) {
+    idleSlots -= Math.min(maxVal, countArr[i])
+  }
+  
+  return idleSlots > 0 ? idleSlots + tasks.length : tasks.length
+};
 // Example:
 
 // Input: tasks = ["A","A","A","B","B","B"], n = 2
