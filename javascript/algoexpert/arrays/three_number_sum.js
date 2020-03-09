@@ -32,3 +32,35 @@ const threeNumberSum = (arr, target) => {
 //Space Complexity: O(n), at most we will have every number in the given input array we can have.
 
 console.log(threeNumberSum([12, 3, 1, 2, -6, 5, -8, 6], 0)); // [[-8, 2, 6][-8, 3, 5], [-6, 1, 5]]
+
+var threeSum = function(nums) {
+  if (!nums || !nums.length) return [];
+  
+  let output = new Array();
+  nums.sort((a, b) => a - b);
+  let numsLen = nums.length;
+  
+  for (let i = 0; i < numsLen; i++) {
+    if (nums[i] > 0) break;
+    if (i >= 0 && nums[i] === nums[i - 1]) continue;
+    
+    let left = i + 1;
+    let right = numsLen - 1;
+    while (left < right) {
+      let match = nums[i] + nums[right] + nums[left];
+      
+      if (match === 0) {
+        output.push([nums[i], nums[left], nums[right]])
+        while (left < right && nums[left] === nums[left + 1]) left++;
+        while (left < right && nums[right] === nums[right - 1]) right--;
+        left++;
+        right--;
+      } else if (match < 0) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+  }
+  return output;
+};
