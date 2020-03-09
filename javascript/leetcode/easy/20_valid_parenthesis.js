@@ -32,3 +32,33 @@ console.log(isValid('()')); // true
 // console.log(isValid('(]')); // false
 // console.log(isValid('([)]')); // false 
 // console.log(isValid('{[]}')); // true
+
+var isValid = function(s) {
+  if (s.length === 0) return true;
+  if (s.length === 1) return false;
+  if (s.length % 2 !== 0) return false;
+  
+  const dictionary = {
+    ')': '(',
+    '}': '{',
+    ']': '['
+  }
+  const stack = [];
+  
+  for (let char of s) {
+    const currChar = char;
+    const lastChar = stack[stack.length - 1];
+    const delChar = dictionary[currChar];
+    
+    if (delChar) {
+      if (delChar === lastChar) {
+        stack.pop();
+      } else {
+        return false;
+      }
+    } else {
+      stack.push(currChar);
+    }
+  }
+  return stack.length ? false : true
+};

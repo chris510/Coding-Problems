@@ -11,7 +11,7 @@ class ListNode:
         self.val = x
         self.next = None
 
-class Solution:
+class RecursionSolution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
       if l1 is None:
         return l2
@@ -27,7 +27,7 @@ class Solution:
 # Time: O(n), Space: O(n)
 
 
-class Solution:
+class ItterativeSolution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
       
       dummyhead = ListNode(None)
