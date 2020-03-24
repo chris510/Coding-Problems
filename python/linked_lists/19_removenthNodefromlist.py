@@ -15,20 +15,19 @@
 
 # class Solution:
 #     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-#         dummyHead = ListNode(None)
-#         dummyHead.next = head
-        
-#         fast = dummyHead
-#         slow = dummyHead
-        
-#         for i in range(n + 1):
-#           fast = fast.next
-          
-#         while fast != None:
-#           slow = slow.next
-#           fast = fast.next
-        
-#         slow.next = slow.next.next #Remove Node
-#         return dummyHead.next
+#       dummy_head = ListNode(None)
+#       dummy_head.next = head
+#       slow = dummy_head
+#       fast = dummy_head
+      
+#       for i in range(n + 1):
+#         fast = fast.next
+      
+#       while fast is not None:
+#         slow = slow.next
+#         fast = fast.next
+      
+#       slow.next = slow.next.next
+#       return dummy_head.next
 
 # Time: O(n) | Space: O(1)
