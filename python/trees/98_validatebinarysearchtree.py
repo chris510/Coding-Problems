@@ -26,3 +26,19 @@
 # Input: [5,1,4,null,null,3,6]
 # Output: false
 # Explanation: The root node's value is 5 but its right child's value is 4.
+
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+      return self.validateBST(root, float(-inf), float(inf))
+        
+    def validateBST(self, node, min_val, max_val):
+      if not node:
+        return True
+      if min_val >= node.val or node.val >= max_val:
+        return False
+      
+      leftisValid = self.validateBST(node.left, min_val, node.val)
+      rightisValid = self.validateBST(node.right, node.val, max_val)
+      return leftisValid and rightisValid
+    
+# Time: O(n) | Space: O(n)
