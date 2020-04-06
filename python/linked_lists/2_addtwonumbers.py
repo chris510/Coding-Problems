@@ -19,7 +19,7 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode):
       sum += l1.val
       l1 = l1.next
     
-    if l2:
+    if l2:a
       sum += l2.val
       l2 = l2.next
     
