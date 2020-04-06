@@ -9,6 +9,7 @@
 # You must do this in-place without making a copy of the array.
 # Minimize the total number of operations.
 
+# Just like bubble sort, instead of greater than or less than numbers. Its numbers that are 0 or not 0.
 def moveZeroes(self, nums: List[int]) -> None:
   zero = 0
   for non_zero in range(len(nums)):
