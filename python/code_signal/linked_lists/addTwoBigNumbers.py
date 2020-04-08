@@ -35,3 +35,37 @@
 # [output] linkedlist.integer
 
 # The result of adding a and b together, returned without leading zeros in the same format.
+
+def addTwoHugeNumbers(a, b):
+    a = reverse(a)
+    b = reverse(b)
+    
+    carry = 0
+    result = None
+    
+    while a is not None or b is not None or carry > 0:
+        raw = ((a.value if a is not None else 0) + 
+               (b.value if b is not None else 0) + 
+               carry)
+                
+        node = ListNode(raw % 10000)
+        node.next = result
+        
+        result = node
+        carry = raw // 10000
+        
+        if a is not None:
+            a = a.next
+        if b is not None:
+            b = b.next
+            
+    return result
+    
+def reverse(list):
+    current = list
+    previous = None
+    
+    while current is not None:
+        previous, current.next, current = current, previous, current.next
+        
+    return previous
