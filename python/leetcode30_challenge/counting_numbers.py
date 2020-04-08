@@ -37,5 +37,14 @@ def countElements(arr):
   
   return count
 
+  def countElements(arr):
+    seen = set(arr)
+    count = 0
+    for num in arr:
+      if num + 1 in seen:
+        count += 1
+        
+    return count
+
 # Time: O(n) | Space: O(n)
 # We can also do Time: O(n log n) | Space: O(1) by sorting the array and using a two pointer method to check if the corresponding number is there or not.

@@ -30,6 +30,11 @@ var maxDepth = function(root) {
   return maxDepth;
 };
 
+var maxDepth = function(root) {
+  if (!root) return 0;
+  
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
+};
 
 // Time Complexity : O(n) we have to traverse through the whole tree and get the max depth;
 // Space Complexity : O(n) if the tree is unbalanced, then the recursion calls would take O(n) times but the best case is when it is balanced and 
