@@ -43,3 +43,28 @@ class Solution:
 
 # Time: O(n * m) where n and mr are rows and columns of the matrix respectively
 # Time: O(n * m) n and m rows and columns for the recursive stack.
+
+# BFS METHOD
+# from collections import deque
+# class Solution:
+#     def numIslands(self, grid: List[List[str]]) -> int:
+#         count = 0
+        
+#         for i in range(len(grid)):
+#           for j in range(len(grid[0])):
+#             if grid[i][j] == "1":
+#               queue = deque([(i, j)])
+#               count += 1
+              
+#               while queue:
+#                 x, y = queue.popleft()
+#                 if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[x]) or grid[x][y] != "1":
+#                   continue
+#                 grid[x][y] = "0"
+#                 queue.append((x + 1, y))
+#                 queue.append((x - 1, y))
+#                 queue.append((x, y - 1))
+#                 queue.append((x, y + 1))
+                
+        
+#         return count

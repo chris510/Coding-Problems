@@ -43,19 +43,19 @@ const maxPathSum = (root) => {
 if (!root) return 0;
 let maxSum = -Infinity;
 
-const traverseTree = (node, sum) => {
-  if (!node) return null;
-  sum += node.value;
-  
-  traverseTree(node.left, sum);
-  traverseTree(node.right, sum);
-  
-  maxSum = Math.max(maxSum, sum);
-  return sum;
-}
+  const traverseTree = (node, sum) => {
+    if (!node) return null;
+    sum += node.value;
+    
+    traverseTree(node.left, sum);
+    traverseTree(node.right, sum);
+    
+    maxSum = Math.max(maxSum, sum);
+    return sum;
+  }
 
-traverseTree(root, 0); // 10 + 10
-return maxSum;
+  traverseTree(root, 0); // 10 + 10
+  return maxSum;
 }
 
 console.log(maxPathSum(root));

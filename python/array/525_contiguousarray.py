@@ -22,6 +22,7 @@ def findMaxLength(nums):
       count += 1
     else:
       count -= 1
+      
     if count in table:
       max_len = max(max_len, i - table[count])
     else:
