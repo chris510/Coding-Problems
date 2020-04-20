@@ -27,21 +27,18 @@
 # Input: "{[]}"
 # Output: true
 
-def isValid(self, s: str) -> bool:
-  match = {
-      ')': '(',
-      '}': '{',
-      ']': '['
-  }
-
-  stack = []
+def isValid(s: str):
+  stack, match = [], {')': '(', ']': '[', '}': '{'}
   
   for char in s:
     if char in match:
-      if not (stack and stack.pop() == match[char]):
+      if stack and stack.pop() == match[char]:
+        continue
+      else:
         return False
     else:
       stack.append(char)
+  
   return not stack
 
 # Time: O(n) | Space: O(n)
