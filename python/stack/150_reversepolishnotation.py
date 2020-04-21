@@ -29,29 +29,33 @@
 # = 17 + 5
 # = 22
 
-def evalRPN(self, tokens):       
+# Edge case: 
+  # Floats
+  # No tokens
+  # Letters
+  # Consecutive numbers (more than 2) and then an operand 
+
+def evalRPN(self, tokens):     
+  if not tokens: return 0  
   stack = []
-  n = len(tokens)
-    
-  for i in range(n):
-    if tokens[i] in ("+", "-", "*", "/"):
-      op2 = int(stack.pop())
-      op1 = int(stack.pop())
-      res = self.process(op1, op2, tokens[i])
-      stack.append(res)
+  
+  for t in tokens:
+    if t in ('+', '-', '*', '/'):
+      num2, num1 = stack.pop(), stack.pop()
+      newNum = self.mathProcess(num1, num2, t)
+      stack.append(int(newNum))
     else:
-      stack.append(tokens[i])
-      
+      stack.append(int(t))
   return stack.pop()
 
-def process(self, op1, op2, operator):   
-  if operator == '+': 
-    return op1+ op2
-  elif operator == '-':
-    return op1- op2
-  elif operator == '*':
-    return op1*op2
-  elif operator == '/':
-    return int(op1/op2)
+def mathProcess(self, num1, num2, op):
+  if op == '+':
+    return num1 + num2
+  elif op == '-':
+    return num1 - num2
+  elif op == '*':
+    return num1 * num2
+  elif op == '/':
+    return int(num1/num2)
 
 # Time: O(n) | Space: O(n)
