@@ -34,6 +34,7 @@
   # No tokens
   # Letters
   # Consecutive numbers (more than 2) and then an operand 
+  # If the second number was a 0
 
 def evalRPN(self, tokens):     
   if not tokens: return 0  
