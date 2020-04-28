@@ -28,8 +28,8 @@ def longestCommonSubsequence(text1, text2):
   # shallow results where every element in the array is pointed to one object
   # DO NOT USE
   # dp = [[0] * (col + 1)] * (row + 1) 
-  
   dp = [[0 for i in range(col + 1)] for j in range(row + 1)]
+  
   for i in range(1, row + 1):
     for j in range(1, col + 1):
       if text1[i - 1] == text2[j - 1]:
