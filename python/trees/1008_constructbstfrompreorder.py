@@ -29,9 +29,6 @@ def bstHelper(self, preorder, inorder):
   
   root = TreeNode(preorder[0])
   rootIndex = inorder.index(root.val)
-  print(root, rootIndex)
-  print(preorder)
-  print(inorder)
   root.left = self.bstHelper(preorder[1: rootIndex + 1], inorder[:rootIndex])
   root.right = self.bstHelper(preorder[rootIndex + 1:], inorder[rootIndex + 1:])
   

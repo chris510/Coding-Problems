@@ -36,9 +36,26 @@ def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
       foundNodes.append((depth, parent))
       
     search(node.left, node, depth + 1)
-    search(node.right, node, depth + 1 )
+    search(node.right, node, depth + 1)
     
   search(root, None, 0)
   return foundNodes[0][0] == foundNodes[1][0] and foundNodes[0][1]  != foundNodes[1][1]
 
 # Time: O(n) | Spae: O(n) where n is the number of nodes in the tree
+
+#bfs
+
+def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
+  foundNodes = []
+  queue = deque([(root, None, 0)])
+  
+  while queue:
+    node, parent, depth = queue.popleft()
+    if node.val == x or node.val == y:
+      foundNodes.append((depth, parent))
+    
+    if node.left:
+      queue.append((node.left, node, depth + 1))
+    if node.right:
+      queue.append((node.right, node, depth + 1))
+  return foundNodes[0][0] == foundNodes[1][0] and foundNodes[0][1] != foundNodes[1][1]
