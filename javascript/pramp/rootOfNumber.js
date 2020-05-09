@@ -13,7 +13,7 @@
 
 // input:  x = 9, n = 2
 // output: 3
-const root = (x, n) {
+const root = (x, n) => {
   if (x === 0) return 0;
   
   let lower = 0;
