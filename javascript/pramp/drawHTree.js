@@ -47,13 +47,13 @@ const drawHTree = (x, y, length, depth) => {
   drawHTree(rightBot[0], rightBot[1], newLength, depth)
 }
 
-// O(n^4) Time Complexity
-// O(n) space complexity; n = depth
-// 4^n
 
 const drawLine = (x1,y2,x2,y2) => {
   console.log('new depth')
 }
+// O(n^4) Time Complexity
+// O(n) space complexity; n = depth
+// 4^n
 
 console.log(drawHTree(0, 0, 4, 4))
 
