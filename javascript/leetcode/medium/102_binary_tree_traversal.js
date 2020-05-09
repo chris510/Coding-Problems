@@ -26,7 +26,6 @@ var levelOrder = function(root) {
 // Time Complexity: O(n) where we traverse the whole tree;
 // Space Complexity: O(n) since we are returning a new array with the levels values same length as n.
 
-
 var levelOrder = function(root) {
   let result = [];
   let level = 0;
