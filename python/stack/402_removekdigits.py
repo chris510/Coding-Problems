@@ -29,6 +29,7 @@ def removeKdigits(self, num, k):
       stack.pop()
       k -= 1
     stack.append(n)
+  # Edge case where number goes from smallest to largest
   if k:
     del stack[-k:]
   stack = ''.join(stack)
