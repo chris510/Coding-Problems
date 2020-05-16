@@ -19,7 +19,6 @@ class Trie(object):
   def __init__(self):
     self.root = {}
       
-
   def insert(self, word):
     root = self.root
     for char in word:
@@ -47,3 +46,12 @@ class Trie(object):
       root = root[char]
     return True
         
+trie = Trie();
+
+trie.insert("apple");
+trie.search("apple");   # returns true
+trie.search("app");     # returns false
+trie.startsWith("app"); # returns true
+trie.insert("app");   
+trie.search("app");     # returns true
+

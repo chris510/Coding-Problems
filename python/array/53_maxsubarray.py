@@ -44,26 +44,26 @@
 
 def maxSubArray(self, nums: List[int]) -> int:
   return self.divide_and_conq(nums, 0, len(nums) - 1)
+  
+  def divide_and_conq(self, nums, left, right):
+    if left > right:
+      return float(-inf)
+    mid = math.floor((left + right)/2)
 
-def divide_and_conq(self, nums, left, right):
-  if left > right:
-    return float(-inf)
-  mid = math.floor((left + right)/2)
+    left_max = curr_sum = 0
+    for i in range(mid - 1, left - 1, -1):
+      curr_sum += nums[i]
+      left_max = max(left_max, curr_sum)
+      
+    right_max = curr_sum = 0
+    for i in range(mid + 1, right + 1):
+      curr_sum += nums[i]
+      right_max = max(right_max, curr_sum)
+      
+    left_ans = self.divide_and_conq(nums, left, mid - 1)
+    right_ans = self.divide_and_conq(nums, mid + 1, right)
 
-  left_max = curr_sum = 0
-  for i in range(mid - 1, left - 1, -1):
-    curr_sum += nums[i]
-    left_max = max(left_max, curr_sum)
-    
-  right_max = curr_sum = 0
-  for i in range(mid + 1, right + 1):
-    curr_sum += nums[i]
-    right_max = max(right_max, curr_sum)
-    
-  left_ans = self.divide_and_conq(nums, left, mid - 1)
-  right_ans = self.divide_and_conq(nums, mid + 1, right)
-
-return max(left_max + nums[mid] + right_max, max(left_ans, right_ans))
+  return max(left_max + nums[mid] + right_max, max(left_ans, right_ans))
 
 
 # Time: O(N log N) because we're going through the whole array but splitting it into n sub problems
