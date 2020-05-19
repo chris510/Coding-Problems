@@ -64,3 +64,40 @@ var findAnagrams = function(s, p) {
 // The substring with start index = 0 is "ab", which is an anagram of "ab".
 // The substring with start index = 1 is "ba", which is an anagram of "ab".
 // The substring with start index = 2 is "ab", which is an anagram of "ab".
+
+
+var findAnagrams = function(s, p) {
+  const res = []
+  const sLen = s.length;
+  const pLen = p.length;
+  
+  if (s.len === 0 || !s) return res;
+  
+  let freq = {}
+  let uniqueChars = 0
+  for (let char of p) {
+    if (!freq[char]) {
+      uniqueChars++;
+      freq[char] = 1;
+    } else {
+      freq[char]++;
+    }
+  }
+  
+  let left = 0, right = 0;
+  
+  for (right; right < sLen; right++) {
+    if (freq[s[right]]!=null) freq[s[right]]--;
+    if (freq[s[right]]==0) uniqueChars--;
+    if (uniqueChars==0) res.push(left);
+    if (right - left + 1 == p.length) {
+      //   if (freq[s[left]]!=null) freq[s[left]]++;
+      //   // left++;
+      //   if (freq[s[left] == 1]) {
+      //     uniqueChars++;
+      //     left++;
+      //   }
+      // left++;
+    }
+  }
+}
