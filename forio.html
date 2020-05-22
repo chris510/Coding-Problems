@@ -1,0 +1,116 @@
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+</style>
+
+<ul class="list">
+  <li>3</li>
+  <li>4</li>
+  <li>1</li>
+  <li>12</li>
+  <li>0</li>
+</ul>
+
+
+<script>
+  // QUESTION 3: Get the LIs from teh DOM (3, 4, 1, 12, 0), sort them, put them back in the dom in unordered lists of size 2 or less
+  
+  const list = document.querySelector('.list');
+  const listItems = [...document.querySelectorAll('li')];
+  
+  function sortItems(arr) {
+    return arr.sort((a, b) => {
+      return parseInt(a.textContent) > parseInt(b.textContent) ? 1 : -1; //value 
+    });
+  }
+  
+
+  function createLists(){
+    const listCount = listItems.length;
+		const sortedItems = sortItems(listItems);
+    // 0 1 12 3 4
+    
+    for (let i = 0; i < listCount - 1; i += 2) {
+    	const firstNum = sortedItems[i];
+      const secondNum = sortedItems[i + 1];
+      const listItem = document.createElement('ul');
+      listItem.appendChild(firstNum);
+      listItem.appendChild(secondNum);
+      document.body.appendChild(listItem);
+    }
+    
+    if (listCount % 2 === 1) {
+      const lastNum = sortedItems[listCount - 1];
+      const oddListItem = document.createElement('ul');
+			oddListItem.append(lastNum);                                        
+      document.body.appendChild(oddListItem);
+    }
+    //for loop, increment variable by 2
+    	//if i === listCount - 1:
+    		//break
+    	//[i] [i-1] append to a new UL
+    
+  }
+  
+  createLists();
+  
+  // =>
+  // <ul>
+  //	li 0
+  //	li 1
+  // /ul
+  // ul
+  //	li 3
+  //	li 4
+  // /ul
+  // ul
+  // 	li 12
+  // /ul
+  
+  
+  
+  // QUESTION 2: Given an array of characters, either R, B or G, sort into RBG order
+  const secondArr = ['r', 'r', 'b', 'g', 'b', 'r', 'g', 'b', 'r'];
+  
+  function rgbSort(arr) {
+    const order = "rbg";
+    const count = uniqueCount(arr); // count-hash of letters
+    const result = [];
+    
+    for (const char of order) {
+     const letFreq = count[char]
+     for (let i = 0; i < letFreq; i++) {
+      result.push(char); 
+     }
+    }
+    return result;
+  }
+  
+  // {'r': 4, 'b': 3, 'g': 2}
+  
+  // => 'r', 'r, 'r', 'r', 'b', 'b', b, g, g'
+  
+  console.log(rgbSort(secondArr));
+  
+  // QUESTION 1: Given an array of numbers, find the count for each unique element
+  
+  const firstArr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+  
+  function uniqueCount(arr) {
+    const count = {};
+    
+    for (const num of arr) {
+     if (!count[num]) {
+      count[num] = 1;
+     } else {
+      count[num]++; 
+     }
+    }
+    
+    return count;
+  }
+
+  console.log(uniqueCount(firstArr));
+  // 1: 2, 2: 2, 3: 2, 4: 2, 5: 1
+</script>
